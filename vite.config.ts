@@ -43,10 +43,7 @@ const config = {
 					}
 				]
 			},
-			strategies: 'generateSW',
-			devOptions: {
-				enabled: true
-			}
+			strategies: 'generateSW'
 		})
 	],
 }
