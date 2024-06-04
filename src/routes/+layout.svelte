@@ -3,7 +3,6 @@
   import { pwaInfo } from "virtual:pwa-info";
 
   onMount(async () => {
-    console.log("PWA Info", pwaInfo);
     if (pwaInfo) {
       const { registerSW } = await import("virtual:pwa-register");
       registerSW({
@@ -30,10 +29,10 @@
   {@html webManifest}
 </svelte:head>
 
-{#await import("$lib/ReloadPrompt.svelte") then { default: ReloadPrompt }}
-  <ReloadPrompt />
-{/await}
-
 <main>
   <slot />
 </main>
+
+{#await import("$lib/ReloadPrompt.svelte") then { default: ReloadPrompt }}
+  <ReloadPrompt />
+{/await}

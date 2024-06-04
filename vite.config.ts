@@ -6,6 +6,10 @@ const config = {
 	plugins: [
 		sveltekit(),
 		SvelteKitPWA({
+			srcDir: './src',
+			mode: 'development',
+			scope: '/',
+			base: '/',
 			registerType: 'autoUpdate',
 			includeAssets: [
 				'apple-touch-icon-180x180',
@@ -40,8 +44,26 @@ const config = {
 						src: "/pwa-512x512.png",
 						sizes: "512x512",
 						type: "image/png"
+					},
+					{
+						src: "/pwa-512x512.png",
+						sizes: "512x512",
+						type: "image/png",
+						purpose: 'any maskable',
 					}
 				]
+			},
+			injectManifest: {
+				globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}']
+			},
+			workbox: {
+				globPatterns: ['client/**/*.{js,css,ico,png,svg,webp,woff,woff2}']
+			},
+			devOptions: {
+				enabled: true,
+				suppressWarnings: process.env.SUPPRESS_WARNING === 'true',
+				type: 'module',
+				navigateFallback: '/',
 			},
 			strategies: 'generateSW'
 		})
